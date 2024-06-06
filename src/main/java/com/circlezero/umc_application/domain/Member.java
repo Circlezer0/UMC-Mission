@@ -4,11 +4,14 @@ import com.circlezero.umc_application.domain.commons.BaseEntity;
 import com.circlezero.umc_application.domain.enums.Gender;
 import com.circlezero.umc_application.domain.enums.MemberStatus;
 import com.circlezero.umc_application.domain.enums.SocialType;
-import com.circlezero.umc_application.domain.mapping.MemberToFoodCategory;
+import com.circlezero.umc_application.domain.mapping.MemberPrefer;
 import com.circlezero.umc_application.domain.mapping.MemberToMission;
 import com.circlezero.umc_application.domain.mapping.MemberToTerm;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -16,6 +19,8 @@ import java.util.List;
 
 @Entity
 @Getter
+@DynamicInsert
+@DynamicUpdate
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -29,6 +34,12 @@ public class Member extends BaseEntity {
     private String name;
 
     private Integer age;
+
+    private Integer birthYear;
+
+    private Integer birthMonth;
+
+    private Integer birthDay;
 
     @Column(nullable = false, length = 40)
     private String address;
@@ -49,16 +60,17 @@ public class Member extends BaseEntity {
 
     private LocalDate inactiveDate;
 
-    @Column(nullable = false, length = 50)
+    //@Column(nullable = false, length = 50)
     private String email;
 
+    @ColumnDefault("0")
     private Integer point;
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<MemberToTerm> memberAgreeList = new ArrayList<>();
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
-    private List<MemberToFoodCategory> memberPreferList = new ArrayList<>();
+    private List<MemberPrefer> memberPreferList = new ArrayList<>();
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<Review> reviewList = new ArrayList<>();

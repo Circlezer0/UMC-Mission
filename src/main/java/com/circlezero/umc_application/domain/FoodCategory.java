@@ -1,7 +1,7 @@
 package com.circlezero.umc_application.domain;
 
 import com.circlezero.umc_application.domain.commons.BaseEntity;
-import com.circlezero.umc_application.domain.mapping.MemberToFoodCategory;
+import com.circlezero.umc_application.domain.mapping.MemberPrefer;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -23,5 +23,5 @@ public class FoodCategory extends BaseEntity {
     private String name;
 
     @OneToMany(mappedBy = "foodCategory", cascade = CascadeType.ALL)
-    private List<MemberToFoodCategory> memberPrefers = new ArrayList<>();
+    private List<MemberPrefer> memberPrefers = new ArrayList<>();
 }
