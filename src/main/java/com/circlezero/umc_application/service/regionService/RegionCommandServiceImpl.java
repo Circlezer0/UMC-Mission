@@ -12,4 +12,6 @@ public class RegionCommandServiceImpl implements RegionCommandService{
     public boolean isValidRegion(Long id) {
         return regionRepository.existsById(id);
     }
+
+
 }

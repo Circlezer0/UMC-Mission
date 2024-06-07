@@ -38,6 +38,7 @@ public class MemberConverter {
                 .birthMonth(request.getBirthMonth())
                 .birthDay(request.getBirthDay())
                 .memberPreferList(new ArrayList<>())
+                .memberMissionList(new ArrayList<>())
                 .build();
     }
 }

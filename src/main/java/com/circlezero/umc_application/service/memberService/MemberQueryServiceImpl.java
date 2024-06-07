@@ -1,6 +1,7 @@
 package com.circlezero.umc_application.service.memberService;
 
 import com.circlezero.umc_application.domain.Member;
+import com.circlezero.umc_application.domain.Mission;
 import com.circlezero.umc_application.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

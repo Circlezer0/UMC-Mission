@@ -13,8 +13,18 @@ public class MemberResponseDTO {
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class JoinResultDTO{
+    public static class JoinResultDTO {
         Long memberId;
         LocalDateTime createdAt;
+    }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class StartMissionResultDTO {
+        Long memberId;
+        Long missionId;
+        String missionStatus;
     }
 }

@@ -1,6 +1,8 @@
 package com.circlezero.umc_application.web.dto.memberDTO;
 
 import com.circlezero.umc_application.validation.annotation.ExistCategories;
+import com.circlezero.umc_application.validation.annotation.ExistMember;
+import com.circlezero.umc_application.validation.annotation.ExistMission;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -28,5 +30,14 @@ public class MemberRequestDTO {
         String specAddress;
         @ExistCategories
         List<Long> preferCategory;
+    }
+
+    @Getter
+    public static class StartMissionDTO {
+        @ExistMember
+        Long memberId;
+
+        @ExistMission
+        Long missionId;
     }
 }
