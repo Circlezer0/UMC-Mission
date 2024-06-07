@@ -15,6 +15,7 @@ public class StoreRequestDTO {
     public static class CreateDto {
         @NotBlank
         String name;
+        @NotBlank
         @Size(min = 5, max = 50)
         String address;
         @ExistRegion

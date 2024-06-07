@@ -6,6 +6,7 @@ import com.circlezero.umc_application.converter.MemberConverter;
 import com.circlezero.umc_application.converter.MemberPreferConverter;
 import com.circlezero.umc_application.domain.FoodCategory;
 import com.circlezero.umc_application.domain.Member;
+import com.circlezero.umc_application.domain.enums.MemberStatus;
 import com.circlezero.umc_application.domain.mapping.MemberPrefer;
 import com.circlezero.umc_application.repository.FoodCategoryRepository;
 import com.circlezero.umc_application.repository.MemberRepository;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -43,5 +45,13 @@ public class MemberCommandServiceImpl implements MemberCommandService{
         });
 
         return memberRepository.save(member);
+    }
+
+    @Override
+    public boolean isValidMember(Long id) {
+        Optional<Member> memberOpt = memberRepository.findById(id);
+        if(memberOpt.isEmpty()) return false;
+        Member member = memberOpt.get();
+        return !member.getStatus().equals(MemberStatus.INACTIVE);
     }
 }

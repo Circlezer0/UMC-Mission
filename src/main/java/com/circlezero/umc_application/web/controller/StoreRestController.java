@@ -22,8 +22,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/stores")
 public class StoreRestController {
     private final StoreCommandService storeCommandService;
-    @PostMapping("/new")
-    public ApiResponse<StoreResponseDTO.CreateResultDTO> join(
+    @PostMapping("/create")
+    public ApiResponse<StoreResponseDTO.CreateResultDTO> createStore(
             @RequestBody @Valid StoreRequestDTO.CreateDto request){
         Store store = storeCommandService.createStore(request);
         return ApiResponse.onSuccess(StoreConverter.toCreateResultDTO(store));

@@ -5,4 +5,5 @@ import com.circlezero.umc_application.web.dto.storeDTO.StoreRequestDTO;
 
 public interface StoreCommandService {
     Store createStore(StoreRequestDTO.CreateDto request);
+    boolean isValidStore(Long id);
 }

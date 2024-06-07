@@ -7,7 +7,6 @@ import com.circlezero.umc_application.web.dto.storeDTO.StoreResponseDTO;
 
 public class StoreConverter {
 
-
     public static StoreResponseDTO.CreateResultDTO toCreateResultDTO(Store store){
         return StoreResponseDTO.CreateResultDTO.builder()
                 .storeId(store.getId())

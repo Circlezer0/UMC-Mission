@@ -6,4 +6,5 @@ import com.circlezero.umc_application.web.dto.memberDto.MemberRequestDTO;
 public interface MemberCommandService {
 
     Member joinMember(MemberRequestDTO.JoinDto request);
+    boolean isValidMember(Long id);
 }
