@@ -17,6 +17,8 @@ import com.circlezero.umc_application.domain.mapping.MemberToMission;
 import com.circlezero.umc_application.repository.FoodCategoryRepository;
 import com.circlezero.umc_application.repository.MemberRepository;
 import com.circlezero.umc_application.repository.MissionRepository;
+import com.circlezero.umc_application.service.missionService.MissionCommandService;
+import com.circlezero.umc_application.service.missionService.MissionQueryService;
 import com.circlezero.umc_application.web.dto.memberDTO.MemberRequestDTO;
 import com.circlezero.umc_application.web.dto.memberDTO.MemberResponseDTO;
 import lombok.RequiredArgsConstructor;
@@ -31,7 +33,8 @@ import java.util.Optional;
 public class MemberCommandServiceImpl implements MemberCommandService{
     private final MemberRepository memberRepository;
     private final FoodCategoryRepository foodCategoryRepository;
-    private final MissionRepository missionRepository;
+    private final MissionQueryService missionQueryService;
+    private final MissionCommandService missionCommandService;
 
     @Override
     public Member joinMember(MemberRequestDTO.JoinDto request) {
@@ -68,19 +71,24 @@ public class MemberCommandServiceImpl implements MemberCommandService{
     @Override
     public MemberToMission startMission(MemberRequestDTO.StartMissionDTO request) {
         Optional<Member> memberOpt = memberRepository.findById(request.getMemberId());
-        Optional<Mission> missionOpt = missionRepository.findById(request.getMissionId());
+        Optional<Mission> missionOpt = missionQueryService.findMission(request.getMissionId());
         if(memberOpt.isEmpty()){
             throw new MemberHandler(ErrorStatus.MEMBER_NOT_FOUND);
         }
         if(missionOpt.isEmpty()){
             throw new MissionHandler(ErrorStatus.MISSION_NOT_FOUND);
         }
+
         Member member = memberOpt.get();
         Mission mission = missionOpt.get();
 
-        if(mission.getDeadline().isBefore(LocalDate.now())){
+        if(missionCommandService.isExpiredMission(mission)){
             throw new MissionHandler(ErrorStatus.MISSION_EXPIRED);
         }
+        if(missionCommandService.isStartedMission(member,mission)){
+            throw new MissionHandler(ErrorStatus.MISSION_ALREADY_STARTED);
+        }
+
         MemberToMission memberToMission = MemberToMission.builder()
                 .status(MissionStatus.CHALLENGING)
                 .build();

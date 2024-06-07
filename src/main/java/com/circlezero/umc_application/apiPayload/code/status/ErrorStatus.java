@@ -43,7 +43,8 @@ public enum ErrorStatus implements BaseErrorCode {
 
     // Mission Error
     MISSION_NOT_FOUND(HttpStatus.NOT_FOUND, "MISSION_4001", "미션이 없습니다"),
-    MISSION_EXPIRED(HttpStatus.FORBIDDEN, "MISSION_4002", "미션이 만료되었습니다");
+    MISSION_EXPIRED(HttpStatus.FORBIDDEN, "MISSION_4002", "미션이 만료되었습니다"),
+    MISSION_ALREADY_STARTED(HttpStatus.BAD_REQUEST, "MISSION_4003", "이미 시작된 미션입니다");
 
 
     private final HttpStatus httpStatus;
