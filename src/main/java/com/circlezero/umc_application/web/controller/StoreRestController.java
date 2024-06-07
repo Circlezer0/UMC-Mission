@@ -1,13 +1,9 @@
 package com.circlezero.umc_application.web.controller;
 
 import com.circlezero.umc_application.apiPayload.ApiResponse;
-import com.circlezero.umc_application.converter.MemberConverter;
 import com.circlezero.umc_application.converter.StoreConverter;
-import com.circlezero.umc_application.domain.Member;
 import com.circlezero.umc_application.domain.Store;
 import com.circlezero.umc_application.service.storeService.StoreCommandService;
-import com.circlezero.umc_application.web.dto.memberDto.MemberRequestDTO;
-import com.circlezero.umc_application.web.dto.memberDto.MemberResponseDTO;
 import com.circlezero.umc_application.web.dto.storeDTO.StoreRequestDTO;
 import com.circlezero.umc_application.web.dto.storeDTO.StoreResponseDTO;
 import jakarta.validation.Valid;

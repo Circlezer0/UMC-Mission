@@ -1,4 +1,4 @@
-package com.circlezero.umc_application.web.dto.memberDto;
+package com.circlezero.umc_application.web.dto.memberDTO;
 
 import com.circlezero.umc_application.validation.annotation.ExistCategories;
 import jakarta.validation.constraints.NotBlank;

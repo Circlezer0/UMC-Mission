@@ -10,10 +10,9 @@ import com.circlezero.umc_application.domain.enums.MemberStatus;
 import com.circlezero.umc_application.domain.mapping.MemberPrefer;
 import com.circlezero.umc_application.repository.FoodCategoryRepository;
 import com.circlezero.umc_application.repository.MemberRepository;
-import com.circlezero.umc_application.web.dto.memberDto.MemberRequestDTO;
+import com.circlezero.umc_application.web.dto.memberDTO.MemberRequestDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
